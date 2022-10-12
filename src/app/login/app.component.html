@@ -1,0 +1,62 @@
+
+<div *ngIf="flag === true">
+  
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div>
+      <h1 id="h1" style="text-align:center"> INICIO DE SESION </h1>
+    </div>
+    <div style="text-align:center">
+      <svg xmlns="http://www.w3.org/2000/svg" style="color:cornflowerblue" width="100" height="100" fill="currentColor"
+        class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+        <path
+          d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
+        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+      </svg>
+  
+    </div>
+    <br>
+    <div style="text-align:center">
+      <input type="text" formControlName="cedula" required placeholder="CEDULA">
+    </div>
+    <br>
+    <div style="text-align:center">
+      <input type="password" formControlName="clave" required placeholder="CONTRASEÑA">
+    </div>
+    <br>
+    <br>
+    <div style="text-align:center">
+      <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary" style="font-size: 20px"
+        onclick="">LOGIN </button>
+    </div>
+  </form>
+</div>
+<div *ngIf="flag === false"> 
+  <div style="text-align:center">
+    <select name="cars" id="cars" form="carform"  >
+        <option value="">A100</option>
+        <option value="">A200</option>
+        <option value="">B100</option>
+        <option value="">B200</option>
+        <option value="">B300</option>
+        <option value="">C100</option>
+        <option value="">C200</option>
+        <option value="">C300</option>
+        <option value="">C400</option>
+        <option value="">D100</option>
+        <option value="">D200</option>
+        <option value="">D300</option>
+        <option value="">E100</option>
+        <option value="">F100</option>
+        <option value="">F200</option>
+        <option value="">F201</option>
+        <option value="">F202</option>
+        <option value="">F300</option>
+        <option value="">G100</option>
+    </select>
+  </div>
+  <br>
+  <input type="file" >
+  <br>
+  <button type="submit"> imprimir </button>
+</div>
+<router-outlet></router-outlet>
