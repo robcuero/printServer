@@ -3,14 +3,6 @@ import { Injectable } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import Swal from "sweetalert2";
 
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger",
-  },
-  buttonsStyling: false,
-});
-
 @Injectable({
   providedIn: "root",
 })
@@ -31,20 +23,18 @@ export class UserService {
       this.http.post(this.BaseURI + "/getLoginPrintServer", test).subscribe(
         (res) => {
           resolve(res);
-          swalWithBootstrapButtons.fire(
-            "¡ logueado !",
-            "correcto.",
-            "success"
-          );
+          Swal.fire({
+            icon: 'success',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })  
         },
         (error) => {
-            swalWithBootstrapButtons.fire(
-            "Cancelado",
-            "incorrcoto",
-            "error"
-          );
-        
-      
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })     
           rejects(error);
         }
       );

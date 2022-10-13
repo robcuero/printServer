@@ -20,7 +20,7 @@
     "@angular/router": "^14.2.0",
     "rxjs": "6.6.3",
     "rxjs-compat": "^6.6.6",
-    "sweetalert2": "^10.15.6",
+    "sweetalert2": "^11.5.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
