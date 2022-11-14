@@ -41,8 +41,12 @@ export class AppComponent {
   areaList:any=[];
   areaListImpresoras:any=[];
   usuarioList:any=[];
-  ipv:any=[];
+  ipv:any;
   totalhojas:any;
+  idUsuario:any;
+  idArea:any;
+  idImpresora:any;
+  nombredocumento:any;
   
 
     loginForm = this.fb.group({
@@ -64,7 +68,8 @@ export class AppComponent {
           this.flag = res.status === 1 ? false : true
           this.usuarioList=res;
           //id personal 
-          console.log(this.usuarioList.idpersonal);
+          this.idUsuario=this.usuarioList.idpersonal
+          
         })
         .catch((err : any) => {
           this.flag = true
@@ -95,11 +100,35 @@ export class AppComponent {
 
     //funcion oara mandara  imprimir con la ip de la impresora que fue sellecionada
     ipImpresion(){
+
+      
+      for (let areaList of this.areaList) { 
+        if(this.opcionSeleccionado == areaList.descripcion){
+          this.idArea=areaList.id_area;
+          
+        }
+      }
+      for(let impresoralist of this.areaListImpresoras){
+        if(this.impresoraSeleccion == impresoralist.nombre){
+            this.idImpresora=impresoralist.id_registro;
+           
+        }
+      }
+      
       this.ImpresionService.obtenerIpv(this.impresoraSeleccion).subscribe((res:any)=>{
         this.ipv=res;
         console.log(this.ipv);
        
      })
+     const foo = {
+
+      documento:this.nombredocumento,
+      id_area:this.idArea,
+      id_impresora:this.idImpresora,
+      id_usuario:this.idUsuario,
+      total_hojas:this.totalhojas
+     };
+      console.log(foo);
     }
     //fianlizacion
 
@@ -120,20 +149,21 @@ export class AppComponent {
           " EXITOSO.........",
           "success"
         );
+        this.nombredocumento=event.target.files[0].name;
       
+        
        //para obtener el total de hojas del documento que se ha cargado 
         const reader = new FileReader();
           reader.readAsArrayBuffer(event.target.files[0]);
           reader.onload = async () => {
             const pdfDoc = await  PDFDocument.load(reader.result);
              this.totalhojas=(pdfDoc.getPages().length);
-              console.log(this.totalhojas);
+              console.log("total hokajs del documento: "+this.totalhojas);
+              
                //...
        };
-      
       }
     }
-   
     //fianlizacion
 
 

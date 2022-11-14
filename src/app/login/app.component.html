@@ -63,7 +63,7 @@
       <div>
         <select [(ngModel)]="impresoraSeleccion" [ngModelOptions]="{standalone: true}" (change)="ipImpresion()">
 
-          <option value="">SELECICONE LA IMPRESORA</option>
+          <option value="">--SELECICONE LA IMPRESORA--</option>
           <option value="{{impresora.nombre}}" *ngFor="let impresora of areaListImpresoras">{{impresora.nombre}}
           </option>
 
